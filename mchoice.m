@@ -61,12 +61,26 @@ end
 % --- prediction policy 1 ---
 
 %%% Fill in this function! [WS exercise a)]
-function next = predict1()
+
+function next = predict1(j, transm)
+% call the global variables into function predict1
+global param_a param_b
+
+%print the input parameter transm
+transm
+%generate a sample from the standard uniform probability distribution
+r = rand;
+
+if (r <= param_a)
+    hnext = mod(j,3)+1;
+elseif (r >= param_b)
+    hnext = j;
+else
+    hnext = mod(j+1,3)+1;
+end
+
 % predict player next move
-
-next = []; % This is a dummy function
-% HINT: The function should look similar to predict2 and predict3 below
-
+next = winchoice(hnext);
 
 %
 %%% --- DO NOT MODIFY FUNCTIONS BELOW --------------------------------- %%%
